@@ -155,11 +155,15 @@ if __name__ == '__main__':
                 transact = True
                 while transact:
                     print("\nThank you for choosing Point World. Please walk with me\n")
+                    email = input("Email:  ")
+                    if email in loginDetail:
+                        print("\nUser already exist, please login")
+                        break
+                    loginDetail.append(email)
                     firstName = input("First Name:  ")
                     lastName = input("Last Name:  ")
                     phoneNo = input("Phone Number: ")
-                    email = input("Email:  ")
-                    loginDetail.append(email)
+                                            
                     dateOfBirth = input("Date of Birth:  ")
                     gender = input("Gender:  ")
                     occupation = input("Occupation: ")
