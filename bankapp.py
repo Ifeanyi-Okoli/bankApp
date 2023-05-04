@@ -122,16 +122,16 @@ class Bank:
     
     
     @classmethod    
-    def login(cls):
+    def login(cls, arr):
         """Logs in a customer"""
         email = input("Email:  ")
         password = input("Password:  ")
         
-        if email and password:
-            print("Login successful")
+        if email in arr and password in arr:
+            print("\nLogin successful")
             return True
         else:
-            print("Invalid login details")
+            print("\nInvalid login details")
             return False
 
 
@@ -139,6 +139,7 @@ if __name__ == '__main__':
     running = True
     transact = False
     pointWorld = Bank()
+    loginDetail = []
     print("\n")
     print("WELCOME TO POINT WORLD BANK".center(60, "="))
 
@@ -158,10 +159,13 @@ if __name__ == '__main__':
                     lastName = input("Last Name:  ")
                     phoneNo = input("Phone Number: ")
                     email = input("Email:  ")
+                    loginDetail.append(email)
                     dateOfBirth = input("Date of Birth:  ")
                     gender = input("Gender:  ")
                     occupation = input("Occupation: ")
                     address = input("Address:  ")
+                    password = input("Password:  ")
+                    loginDetail.append(password)
                     balance = int(input("Opening Balance (min: #1000):  "))
                     
                     try:
@@ -192,7 +196,7 @@ if __name__ == '__main__':
                             
             elif operation == "2":
                 transact = True
-                if not pointWorld.login():
+                if not pointWorld.login(loginDetail):
                     continue
                 while transact:
                     print("\nPress 0 to cancel\n")
@@ -210,7 +214,7 @@ if __name__ == '__main__':
                     
             elif operation == "3":
                 transact = True
-                if not pointWorld.login():
+                if not pointWorld.login(loginDetail):
                     continue
                 while transact:
                     print("\nPress 0 to cancel\n")
@@ -237,7 +241,7 @@ if __name__ == '__main__':
                         
             elif operation == "4":
                 transact = True
-                if not pointWorld.login():
+                if not pointWorld.login(loginDetail):
                     continue
                 while transact:
                     print("\nPress 0 to cancel\n")
@@ -261,7 +265,7 @@ if __name__ == '__main__':
                         
             elif operation == "5":
                 transact = True
-                if not pointWorld.login():
+                if not pointWorld.login(loginDetail):
                     continue
                 while transact:
                     print("\nPress 0 to cancel\n")
@@ -285,7 +289,7 @@ if __name__ == '__main__':
                         
             elif operation == "6":
                 transact = True
-                if not pointWorld.login():
+                if not pointWorld.login(loginDetail):
                     continue
                 while transact:
                     userEntry = int(input("Account Number:  "))
