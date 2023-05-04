@@ -87,6 +87,7 @@ class Bank:
     
     customers = {}
     balance: int = 0
+    usernames = {}
     
     def deposit(self, account, amount):
         """Credits a customer's account"""
@@ -118,7 +119,20 @@ class Bank:
         accountNumber = customer.generateAccount()
         cls.customers[f'{accountNumber}'] = customer
         return customer
+    
+    
+    @classmethod    
+    def login(cls):
+        """Logs in a customer"""
+        email = input("Email:  ")
+        password = input("Password:  ")
         
+        if email and password:
+            print("Login successful")
+            return True
+        else:
+            print("Invalid login details")
+            return False
 
 
 if __name__ == '__main__':
@@ -129,7 +143,7 @@ if __name__ == '__main__':
     print("WELCOME TO POINT WORLD BANK".center(60, "="))
 
     while running:
-        print("\nPress a number between 1 and 6 that corresponds to the operation you wish to perform\n")
+        print("\nPress a number between 1 and 7 that corresponds to the operation you wish to perform\n")
         operation = input("1. Sign-up \n2. Check Balance \n3. Deposit \n4. Withdrawal \n5. Transfer \n6.Transaction History \n7.Exit\n")
 
         if operation not in "1234567":
@@ -178,6 +192,8 @@ if __name__ == '__main__':
                             
             elif operation == "2":
                 transact = True
+                if not pointWorld.login():
+                    continue
                 while transact:
                     print("\nPress 0 to cancel\n")
                     accountNumber = input("Enter your account number:  ")
@@ -194,6 +210,8 @@ if __name__ == '__main__':
                     
             elif operation == "3":
                 transact = True
+                if not pointWorld.login():
+                    continue
                 while transact:
                     print("\nPress 0 to cancel\n")
                     accountNumber = input("Enter your account number:  ")
@@ -219,6 +237,8 @@ if __name__ == '__main__':
                         
             elif operation == "4":
                 transact = True
+                if not pointWorld.login():
+                    continue
                 while transact:
                     print("\nPress 0 to cancel\n")
                     accountNumber = input("Account Number:  ")
@@ -241,6 +261,8 @@ if __name__ == '__main__':
                         
             elif operation == "5":
                 transact = True
+                if not pointWorld.login():
+                    continue
                 while transact:
                     print("\nPress 0 to cancel\n")
                     accountNumber = input("Account Number:  ")
@@ -263,8 +285,10 @@ if __name__ == '__main__':
                         
             elif operation == "6":
                 transact = True
+                if not pointWorld.login():
+                    continue
                 while transact:
-                    accountNumber = int(input("Account Number:  "))
+                    userEntry = int(input("Account Number:  "))
                     customer = pointWorld.customers[accountNumber]
                     print(customer)
                     if customer:
@@ -278,59 +302,3 @@ if __name__ == '__main__':
                 print("\nThank you for banking with us. Goodbye")
                 break    
             
-        # break
-    #     wema = Bank()
-
-        
-
-    #     print(str(customer))
-    #     print(customer.__dict__.items())
-
-    # chima = wema.signUp("Chima", "Okeke", "09035138223", "chima@gmail.com", "male", "13-09-1992", "Business Man", "Lagos")
-    # chima.updateBalance("deposit", 1000)
-    # chima.updateBalance("withdrawal", 500)
-    # chima.updateBalance("deposit", 1000)
-
-    # print(chima.getBalance)
-
-
-    # print(wema.customers)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#==============================================Inheritance
-
-
-class Investors(Customer):
-    
-    def __init__(self, firstName, lastName, phoneNo, email, address, balance=0, investment=0) -> None:
-        super().__init__(firstName, lastName, phoneNo, email, address, balance)
-        self.investment = investment
-        
-    def loan(self):
-        pass
-    
-    def fixed(self, amount, duration = 364, rate = 0.2):
-        pass
-    
-    def birthday(self):
-        pass
-    
-    
-
-# print(Investors.__dict__.items()) #prints all the attributes of the class
-# print(dir(Investors)) #prints all the attributes of the class
-# print("===============")
-# print(dir(Customer))
